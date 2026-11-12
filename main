@@ -1,0 +1,193 @@
+Experiment # 22 : CRUD operations
+
+Node JS – Express application with REST API for CRUD operations over Students data
+Aim –
+1. Using Express for creating a web application exposing APIs for Creating, Reading,
+Updating, Deleting Students data.
+2. Familiarize that client side can be native applications expecting data in formats like
+json.
+
+Software requirements
+•	Node.js
+•	npm (Node Package Manager)
+•	Notepad++ or visual studio any editor
+•	Postman
+Procedure
+Step 1: Check Node.js installation
+Open Command Prompt and execute:
+node -v
+Check npm:
+npm -v
+
+Create a project folder
+Open Command Prompt and execute:
+cd Desktop
+mkdir StudentsCRUD
+cd StudentsCRUD
+
+Initialize the Node.js project
+npm init -y
+This command creates a package.json file to maintain project details and dependencies.
+
+Install Express
+npm install express
+Express is a Node.js framework used to develop web applications and REST APIs.
+
+Create the JavaScript file
+1.	Open Notepad++.
+2.	Create a new file.
+3.	Type the following program.
+4.	Save it as StudentsCRUDapi.js inside the StudentsCRUD folder.
+
+Step 6: Write the Express application
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+// In-memory database
+let students = [];
+let nextId = 1;
+
+// CREATE - Add a new student
+app.post('/students', (req, res) => {
+    const { name, age } = req.body;
+
+    if (!name || !age) {
+        return res.status(400).json({
+            error: 'Name and age are required.'
+        });
+    }
+
+    const student = {
+        id: nextId++,
+        name: name,
+        age: age
+    };
+
+    students.push(student);
+    res.status(201).json(student);
+});
+
+// READ - Get all students
+app.get('/students', (req, res) => {
+    res.json(students);
+});
+
+// READ - Get student by ID
+app.get('/students/:id', (req, res) => {
+    const student = students.find(
+        s => s.id === parseInt(req.params.id)
+    );
+
+    if (!student) {
+        return res.status(404).json({
+            error: 'Student not found.'
+        });
+    }
+
+    res.json(student);
+});
+
+// UPDATE - Modify student details
+app.put('/students/:id', (req, res) => {
+    const student = students.find(
+        s => s.id === parseInt(req.params.id)
+    );
+
+    if (!student) {
+        return res.status(404).json({
+            error: 'Student not found.'
+        });
+    }
+
+    const { name, age } = req.body;
+
+    if (name !== undefined) student.name = name;
+    if (age !== undefined) student.age = age;
+
+    res.json(student);
+});
+
+// DELETE - Remove a student
+app.delete('/students/:id', (req, res) => {
+    const index = students.findIndex(
+        s => s.id === parseInt(req.params.id)
+    );
+
+    if (index === -1) {
+        return res.status(404).json({
+            error: 'Student not found.'
+        });
+    }
+
+    const removed = students.splice(index, 1);
+
+    res.json({
+        message: 'Student deleted.',
+        student: removed[0]
+    });
+});
+
+// Handle invalid routes
+app.use((req, res) => {
+    res.status(404).json({
+        error: 'Route not found.'
+    });
+});
+
+// Start the server
+const PORT = 3002;
+
+app.listen(PORT, () => {
+    console.log(
+        `Student CRUD API running at http://localhost:${PORT}`
+    );
+});
+
+Step 7: Run the application
+Open Command Prompt and navigate to the project folder.
+cd Desktop\StudentsCRUD
+node StudentsCRUDapi.js
+Student CRUD API running at http://localhost:3002
+
+ 
+
+Step 8: Test the APIs using Postman
+Open Postman and create a new HTTP request.
+Base URL:
+http://localhost:3002
+A. CREATE – Insert student details
+•	Select method: POST
+•	Enter URL: http://localhost:3002/students
+•	Select Body → raw → JSON.
+•	Enter:
+{
+  "name": "Rahul",
+  "age": 20
+}
+
+Click Send.
+Expected response:
+{
+  "id": 1,
+  "name": "Rahul",
+  "age": 20
+}
+
+TESTING
+1.POST
+ 
+2.CREATE
+ 
+3.PUT
+ 
+4.DELET using id
+
+
+
+ 
+
+
+
