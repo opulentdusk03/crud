@@ -1,0 +1,332 @@
+Sample code – 
+ShoppingPage1.html: 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>OnlineStore</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> 
+       
+    <style>  
+        .OverallContainer 
+        { 
+            display:grid; 
+            grid-template-rows: 60px auto 15px; 
+            height: 95vh; 
+            gap: 10px;   
+        } 
+ 
+        .HeaderSection 
+        { 
+            grid-row:1; 
+             
+            display: grid; 
+            grid-template-columns: auto 25%; 
+            width: 100%; 
+            gap: 10px; 
+        } 
+         
+        .Heading 
+        {    
+            grid-column:1; 
+             
+            align-items: center; 
+            color:red; 
+        } 
+         
+        .UserInfo 
+        { 
+            grid-column:2; 
+             
+            display: flex; 
+            flex-direction: row; 
+            justify-content: flex-end; 
+            align-items: center; 
+            gap: 30px; 
+            padding-right: 30px; 
+        } 
+ 
+        .MainContent 
+        { 
+            grid-row:2; 
+             
+            font-size:small; 
+            color:orange; 
+            background-color:lightyellow; 
+            padding:15px; 
+        
+        } 
+         
+        table { 
+          border-spacing: 10px; /* Set the gap between columns */ 
+        } 
+        th, td { 
+          padding-left: 50px; 
+          <!-- border: 1px solid black; /* Optional: Adds borders to the cells */ --> 
+        } 
+ 
+        button 
+        { 
+            background-color:yellow; 
+            color:black; 
+            font-size:medium; 
+        } 
+ 
+        .FooterSection 
+        { 
+            grid-row:3; 
+             
+            display:flex; 
+            flex-direction: row; 
+            align-items: center; 
+        } 
+    </style> 
+ 
+    <script> 
+        function addMobile() 
+        { 
+ 
+        } 
+ 
+        function addLaptop() 
+        { 
+ 
+        } 
+ 
+        function addTV() 
+        { 
+            if (document.getElementById('TVList1').value == '') 
+            { 
+                alert('Select an Item first'); 
+            } 
+            else 
+            { 
+                localStorage.setItem('TV', document.getElementById('TVList1').value); 
+            } 
+        } 
+    </script> 
+</head> 
+<body> 
+    <div class='OverallContainer'> 
+ 
+    <div class='HeaderSection'> 
+        <div class='Heading'> 
+            <h1>Online Store</h1> 
+        </div> 
+        <div class='UserInfo'> 
+            <A href='ShoppingPageCart.html'>Cart</A> 
+            <A href='.\MeProfile'>Me</A> 
+        </div> 
+    </div> 
+     
+     
+    <div class='MainContent'> 
+    <table class='MainTable'> 
+        
+    <tr> 
+        <td> 
+            <img src="img_mobiles.jpg" alt="Mobiles" width="150" height="150"> 
+        </td> 
+        <td> 
+            <label>Mobiles</label><br> 
+            <select name='ItemList' id='MobileList1'> 
+                <option value='' selected>Select a Phone</option> 
+                <option value='SamsungS25'>Samsung S25</option> 
+                <option value='OnePlusNord'>OnePlus Nord</option> 
+                <option value='iPhone'>iPhone 15</option> 
+                <option value='GooglePixel'>Google Pixel 5</option> 
+            </select> 
+        </td> 
+        <td> 
+            <button class='btn btn-primary' onClick="addMobile()">Add to Cart</button> 
+        </td> 
+    </tr> 
+    <tr> 
+        <td> 
+            <img src="img_laptop.jpg" alt="Laptops" width="150" height="150" class="img-thumbnail"> 
+        </td> 
+        <td> 
+            <label>Laptops</label><br> 
+            <select name='ItemList' id='LaptopList1'> 
+                <option value='' selected>Select a Laptop</option> 
+                <option value='HPblah'>HP Model blah</option> 
+                <option value='LenovoBlah'>Lenovo Model blah</option> 
+                <option value='AcerBlah'>Acer Model blah</option> 
+            </select> 
+        </td> 
+        <td> 
+            <button class='btn btn-primary' onClick="addLaptop()">Add to Cart</button> 
+        </td>        
+    </tr> 
+    <tr> 
+        <td> 
+            <img src="img_tv.jpg" alt="TVs" width="150" height="150"> 
+        </td> 
+        <td> 
+            <label>TeleVision</label><br> 
+            <select name='ItemList' id='TVList1'> 
+                <option value='' selected>Select a TV</option> 
+                <option value='Samsung'>Samsung</option> 
+                <option value='LG'>LG</option> 
+                <option value='Sony'>Sony</option> 
+            </select> 
+        </td> 
+        <td> 
+            <button class='btn btn-primary' onClick="addTV()">Add to Cart</button> 
+        </td>        
+    </tr> 
+    </table> 
+    </div> 
+     
+    <div class='FooterSection'> 
+    (c) Online Store, Reg # 567890, Gandipet, Hyderabad, TG. 
+    </div> 
+     
+    </div> <!-- OverallContainer --> 
+</body> 
+</html> 
+ 
+ShoppingPageCart.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>OnlineStore</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> 
+        
+    <style>  
+        .OverallContainer 
+        { 
+            display:grid; 
+            grid-template-rows: 60px auto 15px; 
+            height: 95vh; 
+            gap: 10px;   
+        } 
+ 
+        .HeaderSection 
+        { 
+            grid-row:1; 
+             
+            display: grid; 
+            grid-template-columns: auto 25%; 
+            width: 100%; 
+            gap: 10px; 
+        } 
+         
+        .Heading 
+        {    
+            grid-column:1; 
+             
+            align-items: center; 
+            color:red; 
+        } 
+         
+        .UserInfo 
+        { 
+            grid-column:2; 
+             
+            display: flex; 
+            flex-direction: row; 
+            justify-content: flex-end; 
+            align-items: center; 
+            gap: 30px; 
+            padding-right: 30px; 
+        } 
+ 
+        .MainContent 
+        { 
+            grid-row:2; 
+             
+            font-size:small; 
+            color:orange; 
+            background-color:lightyellow; 
+            padding:15px; 
+        } 
+         
+        button 
+        { 
+            background-color:yellow; 
+            color:black; 
+            font-size:medium; 
+        } 
+ 
+        td 
+        { 
+            padding: 20px; 
+        } 
+ 
+        .FooterSection 
+        { 
+            grid-row:3; 
+             
+            display:flex; 
+            flex-direction: row; 
+            align-items: center; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class='OverallContainer'> 
+ 
+    <div class='HeaderSection'> 
+        <div class='Heading'> 
+            <h1>Online Store</h1> 
+        </div> 
+        <div class='UserInfo'> 
+            <A href='.\Cart'>Cart</A> 
+            <A href='.\MeProfile'>Me</A> 
+        </div> 
+    </div> 
+     
+     
+    <div class='MainContent'> 
+        <table class='MainTable' > 
+        <tr style="display: none;"> 
+            <td> 
+                <img src="img_mobiles.jpg" alt="Mobiles" width="150" height="150"> 
+            </td> 
+            <td> 
+ 
+            </td> 
+            <td> 
+                <button class='btn btn-primary' onClick="addMobile()">Remove from Cart</button> 
+            </td> 
+        </tr> 
+        <tr style="display: none;"> 
+            <td> 
+                <img src="img_laptop.jpg" alt="Laptops" width="150" height="150"> 
+            </td> 
+            <td> 
+ 
+            </td> 
+            <td> 
+                <button class='btn btn-primary' onClick="addLaptop()">Remove from Cart</button> 
+            </td>        
+        </tr> 
+        <tr id="Row3" style="display: none;"> 
+            <td> 
+                <img src="img_tv.jpg" alt="TVs" width="150" height="150"> 
+            </td> 
+            <td> 
+                <label id="SelectedTV1"></label> 
+            </td> 
+            <td> 
+                <button class='btn btn-primary' onload="displayTV()">Remove from Cart</button> 
+            </td>        
+        </tr> 
+        </table> 
+         
+        <script> 
+            if (localStorage.getItem('TV') != '') 
+            { 
+                document.getElementById('Row3').style.display = ""; 
+                document.getElementById('SelectedTV1').textContent = localStorage.getItem('TV'); 
+            }            
+        </script> 
+    </div> 
+<div class='FooterSection'> 
+(c) Online Store,  
+</div> 
+</div> <!-- OverallContainer --> 
+</body> 
+</html> 
