@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <Title>Signin and Signup</Title> 
+        <script> 
+            function handleTheSubmit(event) 
+            { 
+                event.preventDefault(); 
+ 
+                document.getElementById('UserNameId1Label').style.visibility = 'hidden'; 
+                document.getElementById('PasswordId1Label').style.visibility = 'hidden'; 
+                document.getElementById('dateId1Label').style.visibility = 'hidden'; 
+ 
+                let regexForEmail = /^[a-zA-Z][a-zA-Z0-9]+@[a-zA-Z][a-zA-Z0-9]+\.[a-zA-Z]{2,}$/ 
+ 
+                let userEmail = event.target.email1.value; 
+                if (!regexForEmail.test(userEmail)) 
+                { 
+                    document.getElementById('UserNameId1Label').style.visibility = 'visible'; 
+                } 
+ 
+                let regexForUpperCase = /[A-Z]/ 
+                let regexForLowerCase = /[a-z]/ 
+ 
+                let passwd = event.target.password1.value; 
+                if (passwd.length < 8 || !regexForUpperCase.test(passwd) || !regexForLowerCase.test(passwd)) 
+                { 
+                    document.getElementById('PasswordId1Label').style.visibility = 'visible'; 
+                } 
+ 
+                let dob = event.target.date1.value; 
+                if (new Date(dob) > new Date()) 
+                { 
+                    document.getElementById('dateId1Label').style.visibility = 'visible'; 
+                } 
+            } 
+ 
+        </script> 
+    </head> 
+    <body> 
+        <form onsubmit="handleTheSubmit(event)"> 
+            <label>UserName:</label> 
+            <input type="email" id="UserNameId1" name="email1"/> 
+            <br> 
+            <label id="UserNameId1Label" style="color:red; visibility:hidden;">*Invalid email format.</label> 
+            <br> 
+            <br> 
+            <label>Password:</label> 
+            <input type="password" id="PasswordId1" name="password1"/> 
+            <br> 
+            <label id="PasswordId1Label" style="color:red; visibility:hidden;">*High risk password. Please set 
+one including upper case, lower case and min 8 length.</label> 
+            <br> 
+            <br> 
+            <label>DoB:</label> 
+            <input type="date" id="dateId1" name="date1"/> 
+            <br> 
+            <label id="dateId1Label" style="color:red; visibility:hidden;">*Incorrect Date for DoB</label> 
+<br> 
+<br> 
+<input type="submit"/> 
+</form> 
+</body> 
+</html>
